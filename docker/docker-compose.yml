@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  django:
+    build: ../backend_django
+    container_name: django_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../backend_django:/app
+    environment:
+      - PYTHONUNBUFFERED=1

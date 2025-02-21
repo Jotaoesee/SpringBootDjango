@@ -79,10 +79,16 @@ WSGI_APPLICATION = 'apiserver.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django_db',  # Nombre de la base de datos (debe coincidir con tu docker-compose.yml)
+        'USER': 'root',  # Usuario por defecto de MySQL en Docker
+        'PASSWORD': 'root',  # Contraseña de MySQL (debe coincidir con docker-compose.yml)
+        'HOST': 'mysql_db',  # Nombre del servicio en docker-compose.yml
+        'PORT': '3306',  # Puerto predeterminado de MySQL
     }
 }
+
+
 
 
 # Password validation

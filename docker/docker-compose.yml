@@ -10,9 +10,11 @@ services:
       - ../backend_django:/app
     environment:
       - PYTHONUNBUFFERED=1
-      - STRIPE_SECRET_KEY=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  # Reemplaza con tu clave secreta de test
+      - STRIPE_SECRET_KEY=sk_test_51QqCx7DzvfiQtQhxAogrZaGS6or1LwpT6QZHj88z2Tvg4hNUEvfZH3KYaFDon86NvaZdmt3AyddGTxWt7ULeDkeu006CLLRYLA
+      - STRIPE_PUBLIC_KEY=pk_test_51QqCx7DzvfiQtQhxxlDLv4OBxkqoHUek9iQs5NmjIx2yO0VrtjIIcYmGb1yNKdAZDHuZhmBVOzqN5mCmObEJd3q500Zb9hlDa5
     depends_on:
       - mysql_db  
+
 
   mysql_db:
     image: mysql:8.0

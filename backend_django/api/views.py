@@ -1,6 +1,7 @@
+import requests
 from rest_framework import viewsets
 from rest_framework.response import Response
-from rest_framework.decorators import action
+from rest_framework.decorators import action, api_view
 from django.shortcuts import get_object_or_404
 from .models import Perfil, Producto
 from .serializers import PerfilSerializer, ProductoSerializer
@@ -30,3 +31,35 @@ class PerfilViewSet(viewsets.ModelViewSet):
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
+
+# 📌 Integración con Stripe
+@api_view(['GET'])
+def stripe_servicio1(request):
+    url = "https://api.stripe.com/v1/charges"
+    headers = {"Authorization": "Bearer TU_CLAVE_DE_STRIPE"}
+    
+    response = requests.get(url, headers=headers)
+    return Response(response.json())
+
+@api_view(['GET'])
+def stripe_servicio2(request):
+    url = "https://api.stripe.com/v1/customers"
+    headers = {"Authorization": "Bearer TU_CLAVE_DE_STRIPE"}
+    
+    response = requests.get(url, headers=headers)
+    return Response(response.json())
+
+# 📌 Integración con Deepseek
+@api_view(['GET'])
+def deepseek_servicio1(request):
+    url = "https://api.deepseek.com/example-endpoint1"
+    
+    response = requests.get(url)
+    return Response(response.json())
+
+@api_view(['GET'])
+def deepseek_servicio2(request):
+    url = "https://api.deepseek.com/example-endpoint2"
+    
+    response = requests.get(url)
+    return Response(response.json())

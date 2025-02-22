@@ -5,6 +5,7 @@ from .views import (
     ProductoViewSet,
     stripe_servicio1,
     stripe_servicio2,
+    crear_pago,  
     deepseek_servicio1,
     deepseek_servicio2
 )
@@ -18,6 +19,7 @@ urlpatterns = [
     path('', include(router.urls)),
     path('stripe/servicio1/', stripe_servicio1, name='stripe_servicio1'),
     path('stripe/servicio2/', stripe_servicio2, name='stripe_servicio2'),
+    path('stripe/crear_pago/', crear_pago, name='crear_pago'),  # 📌 Nueva URL para crear pagos
     path('deepseek/servicio1/', deepseek_servicio1, name='deepseek_servicio1'),
     path('deepseek/servicio2/', deepseek_servicio2, name='deepseek_servicio2'),
 ]

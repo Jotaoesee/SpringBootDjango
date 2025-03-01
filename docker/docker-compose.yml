@@ -29,6 +29,28 @@ services:
     depends_on:
       - mysql_db
 
+  user-service:
+    build: ./user-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    restart: always
+    networks:
+      - mi_red
+
+  stripe-service:
+    build: ./stripe-payment-service
+    ports:
+      - "8083:8083"
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    restart: always
+    networks:
+      - mi_red
+
   mysql_db:
     image: mysql:8.0
     container_name: mysql_db
@@ -43,5 +65,11 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
+      
+
 volumes:
   mysql_data:
+
+networks:
+  mi_red:
+    driver: bridge

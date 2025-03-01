@@ -40,10 +40,21 @@ services:
     networks:
       - mi_red
 
-  stripe-service:
+  stripe-servicio:
     build: ./stripe-payment-service
     ports:
       - "8083:8083"
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    restart: always
+    networks:
+      - mi_red
+
+  paypal-servicio:
+    build: ./paypal-service
+    ports:
+      - "8084:8084"
     depends_on:
       mysql-db:
         condition: service_healthy

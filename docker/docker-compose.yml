@@ -15,6 +15,19 @@ services:
     depends_on:
       - mysql_db  
 
+  spring_api:
+    build: ../backend_spring
+    container_name: spring_api
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql_db:3306/spring_db?useSSL=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=springuser
+      - SPRING_DATASOURCE_PASSWORD=springpass
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - STRIPE_SECRET_KEY=sk_test_51QqCx7DzvfiQtQhxAogrZaGS6or1LwpT6QZHj88z2Tvg4hNUEvfZH3KYaFDon86NvaZdmt3AyddGTxWt7ULeDkeu006CLLRYLA
+    depends_on:
+      - mysql_db
 
   mysql_db:
     image: mysql:8.0
